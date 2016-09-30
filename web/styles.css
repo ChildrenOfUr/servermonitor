@@ -19,6 +19,10 @@ header {
 
 /* Status display */
 
+main fieldset {
+    margin-bottom: 10px;
+}
+
 .button-set {
     float: right;
 }
@@ -36,6 +40,6 @@ progress {
 
 textarea {
     width: 100%;
-    height: 480px;
+    height: 200px;
     resize: vertical;
 }
