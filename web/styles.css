@@ -27,6 +27,13 @@ main fieldset {
     float: right;
 }
 
+.player-list,
+.street-list {
+    width: calc(50% - 50px);
+    display: inline-block;
+    vertical-align: top;
+}
+
 ul.status-list li:first-child {
     list-style-type: none;
     margin-left: -40px;

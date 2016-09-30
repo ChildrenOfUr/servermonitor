@@ -41,9 +41,11 @@ class Status implements Comparable<Status> {
 		}
 	}
 
-	UListElement get playerDisplay => _bulletList(players, 'online player');
+	UListElement get playerDisplay => _bulletList(players, 'online player')
+		..classes.add('player-list');
 
-	UListElement get streetDisplay => _bulletList(streets, 'loaded street');
+	UListElement get streetDisplay => _bulletList(streets, 'loaded street')
+		..classes.add('street-list');
 
 	UListElement _bulletList(List<Data> items, [String itemType]) {
 		UListElement list = new UListElement()
