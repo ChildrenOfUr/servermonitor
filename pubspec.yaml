@@ -1,0 +1,7 @@
+name: coUservermonitor
+dependencies:
+  browser: any
+#  redstone: any
+#  redstone_mapper: any
+transformers:
+#- redstone_mapper

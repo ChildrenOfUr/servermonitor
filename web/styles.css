@@ -1,0 +1,41 @@
+/* Page */
+
+body,
+input,
+select,
+button {
+    font-family: "Lato", sans-serif;
+}
+
+/* Import form */
+
+header {
+    margin-bottom: 10px;
+}
+
+#add-server-form input {
+    width: 300px;
+}
+
+/* Status display */
+
+.button-set {
+    float: right;
+}
+
+ul.status-list li:first-child {
+    list-style-type: none;
+    margin-left: -40px;
+}
+
+progress {
+    width: 50%;
+}
+
+/* Export form */
+
+textarea {
+    width: 100%;
+    height: 480px;
+    resize: vertical;
+}

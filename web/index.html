@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>CoU Server Monitor</title>
+
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+	<header>
+		<form id="add-server-form">
+			<label>
+				Add server status URL
+				<input type="url" placeholder="http://server.childrenofur.com/serverStatus">
+			</label>
+			<button type="submit">Add Monitor</button>
+		</form>
+
+		<form id="interval-form">
+			<label>
+				Refresh interval
+				<input type="range" min="1" max="30" value="5">
+			</label>
+			<output>5 seconds</output>
+		</form>
+	</header>
+		<main></main>
+
+		<form id="export-data-form">
+			<select></select>
+			<button type="submit">Export CSV</button>
+			<br>
+			<textarea readonly hidden title="Right-click to close"></textarea>
+		</form>
+
+		<script type="application/dart" src="main.dart"></script>
+		<script type="text/javascript" src="packages/browser/dart.js"></script>
+	</body>
+</html>
