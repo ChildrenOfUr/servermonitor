@@ -10,7 +10,9 @@ class ChartExporter {
 			array.add([status.timestamp, status.players.length, status.streets.length, status.memoryUsage.gigabytes, status.cpuUsage.percent]);
 		}
 
-		Map<String, dynamic> options = {};
+		Map<String, dynamic> options = {
+			'thickness': 2
+		};
 
 		gcharts.AnnotationChart chart = new gcharts.AnnotationChart(CHART_DISPLAY);
 		gcharts.DataTable table = gcharts.arrayToDataTable(array);
