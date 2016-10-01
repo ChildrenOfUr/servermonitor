@@ -28,7 +28,7 @@ Future main() async {
 
 	// Register event handlers
 	MonitorList.init();
-	CsvExporter.init();
+	Export.init();
 
 	// Download chart renderer
 	await gcharts.AnnotationChart.load();
