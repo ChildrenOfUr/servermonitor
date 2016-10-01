@@ -9,8 +9,8 @@ class Export {
 		window.onKeyDown.listen((KeyboardEvent event) {
 			if (event.keyCode == 27) {
 				// Escape
-				CsvExporter.EXPORT_DISPLAY.hidden = true;
 				ChartExporter.CHART_DISPLAY.hidden = true;
+				CsvExporter.EXPORT_DISPLAY.hidden = true;
 			}
 		});
 
@@ -21,8 +21,8 @@ class Export {
 				return m.url == EXPORT_MONITOR.selectedOptions.single.value;
 			});
 
-			CsvExporter.display(toExport.statusHistory);
 			ChartExporter.renderChart(toExport.statusHistory);
+			CsvExporter.display(toExport.statusHistory);
 		});
 	}
 

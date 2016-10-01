@@ -5,9 +5,9 @@ class ChartExporter {
 
 	static Future renderChart(List<Status> data) async {
 		// Convert to almost-CSV format
-		List<List> array = [['Timestamp', 'Player Count', 'Loaded Street Count', 'Memory Usage (GB)', 'CPU Usage (%)']];
+		List<List> array = [['Timestamp', 'Player Count', 'Loaded Street Count', 'Memory Usage (MB)', 'CPU Usage (%)']];
 		for (Status status in data) {
-			array.add([status.timestamp, status.players.length, status.streets.length, status.memoryUsage.gigabytes, status.cpuUsage.percent]);
+			array.add([status.timestamp, status.players.length, status.streets.length, status.memoryUsage.megabytes, status.cpuUsage.percent]);
 		}
 
 		Map<String, dynamic> options = {
