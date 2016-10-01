@@ -125,7 +125,7 @@ class Monitor {
 	void _delete() {
 		_parent.remove();
 		MonitorList.MONITORS.remove(this);
-		MonitorList.updateExportList();
+		Export.updateExportList();
 	}
 
 	Element get element => _parent;

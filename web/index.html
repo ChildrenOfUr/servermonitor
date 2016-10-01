@@ -6,6 +6,8 @@
 		<title>CoU Server Monitor</title>
 
 		<link rel="stylesheet" href="styles.css">
+
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	</head>
 	<body>
 	<header>
@@ -29,9 +31,11 @@
 
 		<form id="export-data-form">
 			<select></select>
-			<button type="submit">Export CSV</button>
+			<button type="submit">Export</button>
+			(press <kbd>Esc</kbd> to close)
 			<br>
-			<textarea readonly hidden title="Right-click to close"></textarea>
+			<div id="chart" hidden></div>
+			<textarea readonly hidden></textarea>
 		</form>
 
 		<script type="application/dart" src="main.dart"></script>

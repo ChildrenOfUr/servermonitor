@@ -10,7 +10,7 @@ class DataSize implements Data {
 
 	int get megabytes => kilobytes ~/ 1000;
 
-	int get gigabytes => megabytes ~/ 1000;
+	double get gigabytes => megabytes / 1000;
 
 	String get autoUnit {
 		if (gigabytes >= 1) {

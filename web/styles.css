@@ -43,10 +43,19 @@ progress {
     width: 50%;
 }
 
+hr {
+    clear: right;
+}
+
 /* Export form */
 
 textarea {
     width: 100%;
     height: 200px;
     resize: vertical;
+}
+
+.chart {
+    width: 100%;
+    height: 400px;
 }
