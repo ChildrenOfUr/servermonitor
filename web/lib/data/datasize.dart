@@ -6,6 +6,11 @@ class DataSize implements Data {
 
 	DataSize({this.label, this.bytes: 0});
 
+	DataSize.fromMap(Map<String, dynamic> encoded) {
+		this.label = encoded['label'] ?? null;
+		this.bytes = encoded['bytes'] ?? 0;
+	}
+
 	int get kilobytes => bytes ~/ 1000;
 
 	int get megabytes => kilobytes ~/ 1000;
@@ -24,6 +29,18 @@ class DataSize implements Data {
 
 	@override
 	String toString() => autoUnit;
+
+	Map<String, dynamic> toMap() {
+		Map<String, dynamic> encoded = {
+			'bytes': bytes
+		};
+
+		if (label != null) {
+			encoded['label'] = label;
+		}
+
+		return encoded;
+	}
 
 	DivElement toElement() => new DivElement()
 		..text = '${label != null ? '$label: ' : ''} $this';

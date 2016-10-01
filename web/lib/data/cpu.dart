@@ -5,8 +5,16 @@ class CpuUsage implements Data {
 
 	CpuUsage({this.percent: 0.0});
 
+	CpuUsage.fromMap(Map<String, dynamic> encoded) {
+		this.percent = encoded['percent'] ?? 0.0;
+	}
+
 	@override
 	String toString() => '$percent%';
+
+	Map<String, dynamic> toMap() => {
+		'percent': percent
+	};
 
 	DivElement toElement() =>
 		new DivElement()

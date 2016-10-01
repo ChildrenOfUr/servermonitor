@@ -2,6 +2,7 @@ part of coUservermonitor;
 
 abstract class MonitorList {
 	static final String _LS_KEY = 'coUservermonitor_urls';
+	static final String _LS_COLLECTED = 'coUservermonitor_data';
 
 	static final List<Monitor> MONITORS = [];
 
@@ -36,24 +37,57 @@ abstract class MonitorList {
 		Export.updateExportList();
 	}
 
+	static Monitor getMonitor(String url) {
+		try {
+			return MONITORS.singleWhere((Monitor m) => m.url == url);
+		} catch (_) {
+			return null;
+		}
+	}
+
 	static void saveMonitors() {
+		// Save URLs
 		List<String> urls = [];
 		MONITORS.forEach((Monitor monitor) => urls.add(monitor.url));
 		window.localStorage[_LS_KEY] = JSON.encode(urls);
+
+		// Save monitor data
+		Map<String, List<Map<String, dynamic>>> histories = {};
+		MONITORS.forEach((Monitor monitor) => histories.addAll({monitor.url: monitor.encodeHistory()}));
+		window.localStorage[_LS_COLLECTED] = JSON.encode(histories);
 	}
 
 	static void loadMonitors() {
-		List<String> urls = [];
+		// Load URLs
 		try {
-			urls = JSON.decode(window.localStorage[_LS_KEY]);
+			if (window.localStorage[_LS_KEY] == null) {
+				return;
+			}
+
+			List<String> urls = JSON.decode(window.localStorage[_LS_KEY]);
+			urls.forEach((String url) {
+				addMonitor(url);
+			});
+			Export.updateExportList();
 		} catch (e) {
 			window.console.error('Error loading monitors: $e');
 		}
 
-		urls.forEach((String url) {
-			addMonitor(url);
-		});
+		// Load monitor data
+		try {
+			if (window.localStorage[_LS_COLLECTED] == null) {
+				return;
+			}
 
-		Export.updateExportList();
+			Map<String, List<Map<String, dynamic>>> histories = JSON.decode(window.localStorage[_LS_COLLECTED]);
+			histories.forEach((String url, List<Map<String, dynamic>> history) {
+				Monitor monitor = getMonitor(url);
+				if (monitor != null) {
+					monitor.decodeHistory(history);
+				}
+			});
+		} catch (e) {
+			window.console.error('Error loading monitor data: $e');
+		}
 	}
 }

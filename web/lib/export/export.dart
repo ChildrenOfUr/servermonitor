@@ -17,12 +17,16 @@ class Export {
 		EXPORT_FORM.onSubmit.listen((Event event) {
 			event.preventDefault();
 
-			Monitor toExport = MonitorList.MONITORS.singleWhere((Monitor m) {
-				return m.url == EXPORT_MONITOR.selectedOptions.single.value;
-			});
+			Monitor toExport = MonitorList.getMonitor(EXPORT_MONITOR.selectedOptions.single.value);
 
 			ChartExporter.renderChart(toExport.statusHistory);
 			CsvExporter.display(toExport.statusHistory);
+
+			// TODO: remove this test stuff
+			Map<String, List<Map<String, dynamic>>> histories = {};
+			MonitorList.MONITORS.forEach((Monitor monitor) => histories.addAll({monitor.url: monitor.encodeHistory()}));
+			print(histories);
+			print(JSON.encode(histories));
 		});
 	}
 

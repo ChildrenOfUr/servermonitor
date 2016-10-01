@@ -17,6 +17,15 @@ class Status implements Comparable<Status> {
 		}
 	}
 
+	Status.fromMap(Map<String, dynamic> encoded) {
+		this.timestamp = DateTime.parse(encoded['timestamp']);
+		this.players = encoded['players'];
+		this.streets = encoded['streets'];
+		this.memoryUsage = new DataSize.fromMap(encoded['memoryUsage']);
+		this.cpuUsage = new CpuUsage.fromMap(encoded['cpuUsage']);
+		this.uptime = new Uptime.fromMap(encoded['uptime']);
+	}
+
 	Status.parse(dynamic data) {
 		timestamp = new DateTime.now();
 
@@ -63,6 +72,15 @@ class Status implements Comparable<Status> {
 
 		return list;
 	}
+
+	Map<String, dynamic> toMap() => {
+		'timestamp': timestamp.toString(),
+		'players': players,
+		'streets': streets,
+		'memoryUsage': memoryUsage.toMap(),
+		'cpuUsage': cpuUsage.toMap(),
+		'uptime': uptime.toMap()
+	};
 
 	int compareTo(Status other) {
 		return timestamp.compareTo(other.timestamp);

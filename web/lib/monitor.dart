@@ -129,4 +129,25 @@ class Monitor {
 	}
 
 	Element get element => _parent;
+
+	void decodeHistory(List<Map<String, dynamic>> history) {
+		timer?.cancel();
+		statusHistory.clear();
+
+		for (Map<String, dynamic> status in history) {
+			statusHistory.add(new Status.fromMap(status));
+		}
+
+		resetTimer();
+	}
+
+	List<Map<String, dynamic>> encodeHistory() {
+		List<Map<String, dynamic>> encoded = [];
+
+		for (Status status in statusHistory) {
+			encoded.add(status.toMap());
+		}
+
+		return encoded;
+	}
 }
