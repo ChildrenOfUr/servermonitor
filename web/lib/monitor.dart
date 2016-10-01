@@ -19,6 +19,8 @@ class Monitor {
 
 	SpanElement _timeDisplay = new SpanElement();
 
+	SpanElement _recordCount = new SpanElement();
+
 	ButtonElement _prevBtn = new ButtonElement()
 		..text = '<'
 		..disabled = true;
@@ -47,6 +49,7 @@ class Monitor {
 			..append(new DivElement()
 				..classes = ['button-set']
 				..append(_prevBtn)
+				..append(_recordCount)
 				..append(_nextBtn));
 
 		_update().then((bool success) {
@@ -80,6 +83,8 @@ class Monitor {
 					_prevBtn.disabled  = false;
 				}
 			}
+
+			_recordCount.text = ' ${statusHistory.length} record${statusHistory.length == 1 ? '' : 's'} ';
 
 			return true;
 		} catch (e) {
